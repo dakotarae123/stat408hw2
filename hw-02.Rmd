@@ -1,0 +1,83 @@
+---
+title: "Homework 2"
+author: "Dakota Terry"
+date: "Due Tuesday, February 7, 2022 at 5:00 PM in D2L"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+```
+
+# Instructions
+
+Use this .Rmd file as a template for your homework. Please use D2L to turn in both the PDF output and your R Markdown (.Rmd) file. Your .Rmd file should compile on its own if it is downloaded by your instructor.
+
+## Load packages and data
+
+_Reminder_: Packages that are not built-in to the original R installation need to first be installed in RStudio before the package will load into the current session. Refer to the homework instructions for package installation steps.
+
+```{r load-packages, message = FALSE}
+library(tidyverse)
+library(dsbox)
+```
+
+## Exercises
+
+### Exercise 1
+
+The dataset has 13245 observations of 10 variables
+
+```{r}
+dim(edibnb)
+
+```
+
+### Exercise 2
+
+Each row represents an airbnb that is listed for rental in Edinburgh, Scotland. 
+
+### Exercise 3
+
+I chose to wrap my facets into 4 rows and 4 columns. Ideally, i would have liked to lay them all out in a row for easy comparison, but that was too difficult with this many neighbourhoods to compare due to the small width of each facet. This way, you can see all of them side by side on the same scale and they all fit more comfortably on one screen. I chose a bin width of 20 because I felt that was the smallest value that showed a proper distribution curve without major volatility. 
+
+```{r prices-neighbourhoods}
+
+ggplot(data = edibnb, mapping = aes(x = price)) +
+  geom_histogram(binwidth = 20) +
+  facet_wrap(~neighbourhood , nrow = 4, ncol = 4) 
+  
+```
+
+### Exercise 4
+
+I chose to make a facet-wrapped boxplot showing ratings by neighbourhood. Based on the charts, it is clear that most people give ratings of 100 to their airbnbs and very few people leave bad reviews. It is also evident that certain neighbourhoods get more mixed/bad reviews than others. The neighbourhoods of Cannonmills, Haymarket, Morningside, Stockbridge, and Tolicross had virtually no ratings below 50, and all other neighbourhoods had a certain, albeit small, proportion of very low ratings. One thing I noted was that Leith and the NA category had by far the most airbnb observations and also had the most variability in their ratings, which makes sense.
+
+```{r review-scores-rating}
+
+ggplot(data = edibnb, mapping = aes(x = review_scores_rating)) +
+  geom_dotplot() +
+  facet_wrap(~neighbourhood , nrow = 4, ncol = 4) 
+
+```
+
+### Exercise 5
+
+Remove this text, and add your answer for Exercise 5 here.
+
+```{r read-in-data}
+# use the read_csv function to read in your data set here
+```
+
+```{r graphical-exploration}
+# remove this comment and add the code for Exercise 5 here
+```
+
+
+### Cite Sources
+
+https://ggplot2.tidyverse.org/reference/index.html 
+
+
