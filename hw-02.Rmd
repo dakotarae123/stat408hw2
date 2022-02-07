@@ -69,6 +69,7 @@ Remove this text, and add your answer for Exercise 5 here.
 
 ```{r read-in-data}
 # use the read_csv function to read in your data set here
+
 ```
 
 ```{r graphical-exploration}
@@ -79,5 +80,9 @@ Remove this text, and add your answer for Exercise 5 here.
 ### Cite Sources
 
 https://ggplot2.tidyverse.org/reference/index.html 
+
+https://catalog.data.gov/dataset/impaired-driving-death-rate-by-age-and-gender-2012-2014-all-states 
+
+
 
 
