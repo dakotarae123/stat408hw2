@@ -65,15 +65,27 @@ ggplot(data = edibnb, mapping = aes(x = review_scores_rating)) +
 
 ### Exercise 5
 
-Remove this text, and add your answer for Exercise 5 here.
+I found a free csv dataset online for work related injury claims for the years 2009-2018. To be honest, I'm not sure of the geographical location of these claims, as the dataset is not that great and does not break observations down by location. I used the dataset anyway, though, because I think it works for the purposes of this exercise. 
+
+My first step was to remove the majority of observations where Industry was equal to "Total", as I didn't find this category useful... I also removed all observations in which Measure was not equal to "Number of claims in thousands" because there are observations in different units... this took me from nearly 2500 observations down to 230, but I found this final subset to be most useful for visualization. 
+
+For my visualization, I chose to create a scatter plot of the number of injury claims by year, and I color-coded my points based on the industry. My plot doesn't look great when you run and view it in this document because of size/scaling issues, but if you open the plot in a new window it scales down to the appropriate size and looks good. From this plot you can tell which industries have the most work-related injuries (Mining was the worst, followed by construction and then forestry/fishing). It was also interesting to me that it appears most industries have had an increasing rate of injury over time (except mining), and it seems to me like work should be getting safer with all the new technology we have, but it appears to be getting more dangerous. This could be explained by the fact that people are more apt to file claims in recent years than they used to be. 
+
 
 ```{r read-in-data}
-# use the read_csv function to read in your data set here
 
+injuries <- read.csv("injury-statistics-work-related-claims-2018-csv.csv")
 ```
 
 ```{r graphical-exploration}
-# remove this comment and add the code for Exercise 5 here
+
+injuries = subset(injuries, Industry!="Total" )
+injuries = subset(injuries, Measure == "Number of claims in thousands")
+
+ ggplot(data = injuries, mapping = aes(y=Value,x=Year, color = Industry)) +
+  geom_point()
+ 
+
 ```
 
 
@@ -81,7 +93,7 @@ Remove this text, and add your answer for Exercise 5 here.
 
 https://ggplot2.tidyverse.org/reference/index.html 
 
-https://catalog.data.gov/dataset/impaired-driving-death-rate-by-age-and-gender-2012-2014-all-states 
+https://www.stats.govt.nz/large-datasets/csv-files-for-download/ 
 
 
 
